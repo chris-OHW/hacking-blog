@@ -1,0 +1,86 @@
+-- Day 1
+Setup 3 VM's (1 attack box, 2 vulnerable machines), isolated them from my home network, and now starting TryHackMe fresh from the start.
+THM: Completed Offensive Security Intro: learned 'dirb' to locate vulnerable web pages, hacked a fake-bank VM and deposited $2,000. 
+  THM: Completed Defensive Security Intro: stopped a BruteForce attack by the group ShadowFigures, attempting to access the /login page from the account dave.saunders. Updated Threat Intelligence and created an Incident Report with our findings.
+    THM: Completed Search Skills module: learned web searching for CVE's, PoC's (proof of concepts), and GitHub Repositories containing vulnerability information.
+THM: Pentesting Fundamentals Room: Reviewed the basics: Black Hat, Grey Hat, White Hat; 
+                                                        ROE Rules of Engagement (legal, authorized): Permission, Test Scope, and Rules.
+                                                        Methodology: Info Gathering, Enumeration/Scanning, Exploitation, Privilege Escalation (horizontally/veritcally), Post-Exploitation (pivoting, additional info, covering tracks, reporting).
+                                                        Organizations: OSSTMM (testing strategies), OWASP (web apps & services), NIST (security controls & benchmarks), NCSC CAF (assess risk)
+                                                        Boxes: Black Box (no known info), Grey Box (some known info/limited), White Box (know full info).
+THM: Linux Fundamentals Part 1
+  whoami - tells which user is logged in being used
+  echo - display text on screen. Put in quotes for multiple words.
+  ls - lists whats in the current folder
+  cd - change directory
+  cat - shows contents of a file
+  pwd - print working directory (file path)
+  find - search for files by name (find -name passwords.txt)
+  grep - searches inside for specific text (grep "password123" passwords.txt)
+
+  Operators
+  & - runs the command in the background, doesn't wait to complete
+  && - runs both commands, but waits for the 1st to finish before running the 2nd
+  > - redirects output, will overwrite
+  >> - redirects output, doesn't overwrite it just adds to whats already there
+
+THM: Linux Fundamentals Part 2
+  ssh - remoting into another pc (ssh username@10.66.184.180)
+
+  Arguments
+  -a - shows all, such as hidden folders.
+  . - hidden files and folders
+  --help - lists the possible options that the command accepts
+  touch - create file (touch recipe) (creates a file named recipe)
+  mkdir - create a folder (mkdir mydirectory) (creates a folder named mydirectory)
+  cp - copy a file or folder (cp recipe recipe2) (copies entire file contents from recipe to recipe2)
+  mv - move a file or folder (mv recipe recipe2) (renames recipe to recipe2 with original file contents)
+  rm - remove a file or folder (rm -R mydirectory) (-R is required)
+  / - root
+  /etc - root directory where system and program files are stored
+  /var - stores data for applications and services (/var/logs for example)
+  /root - home directory for the root user
+  /tmp - stores temporary small data
+
+  Access (Read/Write/Execute) (owner, group, others)
+  rw-r--r-- 1  : owner can read + write, group read only, others read only
+  rw-rw-r-- 1  : owner can read + write, group read only, others read only
+  drwxrwxr -x 2 : d means its a directory, rwx means owner and group get read write execute, others get r-x
+  r-- : read only
+  rw- : read + write
+
+  su - switch user
+    su - l  - creates a shell similar to a regular user accessing the system (su -l user2)
+
+THM: Linux Fundamentals 3
+  nano - create or edit a file. (nano filename)  (cntrl + X  to exit nano)
+  vim - advanced way of creating or editing a file.
+  wget - download files from the web via HTTP. (wget https://assets.tryhackme.com/additional/linux-fundamentals/part3/myfile.txt)
+  scp - secure copy, transfer from machine to machine. (scp important.txt ubuntu@192.168.1.30:/home/ubuntu/transferred.txt)  (Reversed - scp ubuntu@192.168.1.30:/home/ubuntu/documents.txt notes.txt )
+  webserver - turn python into a web server to host from. (python3 -m http:server)  (then in another terminal, use wget -  wget http://10.66.149.166:8000/.flag.txt)
+
+  Processes
+   ps - list of services and other related info.
+   ps aux - list of processes used by others and also not running processes.
+   top - gives realtime info on running processes instead of a one-time view.
+   kill - kills any processes we want to stop. (kill 1245)
+      SIGTERM - kills process, but cleanup beforehand
+      SIGKILL - kills process, doesn't do any cleanup
+      SIGSTOP - stop/suspend a process
+  systemctl - start a process within systemd  - (systemctl [option] [service]  (systemctl start apache2)
+      5 options:
+       start
+       stop
+       enable
+       disable
+       status
+  Ctrl + Z - backgrounding a process (to run in the background, not our foreground)
+  fg - foregrounding a process currently running in the background.
+
+  cron - schedule a certain process to start on reboot
+    MIN, HOUR, DOM, MON, DOW, CMD
+    minute, hour, day of the month, month of the year, day of the week, which command will run
+    Backup cmnatic documents every 12 hours : 0 */12 * * * cp -R /home/cmnatic/Documents /var/backups/
+  crontab - l  - lists active crontabs
+
+  add-apt-repository - adds additional repositories to your OS.
