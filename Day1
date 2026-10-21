@@ -83,4 +83,18 @@ THM: Linux Fundamentals 3
     Backup cmnatic documents every 12 hours : 0 */12 * * * cp -R /home/cmnatic/Documents /var/backups/
   crontab - l  - lists active crontabs
 
-  add-apt-repository - adds additional repositories to your OS.
+  add-apt-repository - adds additional repositories to your OS. (automatically checks for updates)
+  dpkg - manually add additional repositories to your OS. 
+  Example of adding SubLime Text: 
+    wget -qO - https://download.sublimetext.com/sublimehq-pub.gpg | sudo apt-key add -   (adding sublime to our trust list)
+    /etc/apt/sources.list.d# touch sublime-text.list                                     (creates a file named sublime-text that contains repo information)
+    nano sublime-text | deb https://download.sublimetext.com/ apt/stable/                (now we use nano to add and save the new sublime repo)
+    apt update                                                                           (update apt to see the new entry)
+    apt install sublime-text                                                             (we can now proceed to install the software we have trusted)
+
+  apt remove sublime-text                                                                (removing a repository)
+
+ Logs
+  /var/log                         (location of logs for apps and services)
+  Example of accessing access and error logs for an apache2 system:
+   cd /var/log/apache2$ ls
